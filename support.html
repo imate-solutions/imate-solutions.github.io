@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iMate support</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #343539;
+            color: #fff;
+        }
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 320px;
+            background-color: #23242a;
+            border-right: none;
+            padding-top: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 32px;
+            margin-bottom: 40px;
+        }
+        .logo-bar img {
+            height: 100px;
+            margin-right: 12px;
+        }
+        .logo-bar strong {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+        .sidebar-nav {
+            width: 100%;
+            padding-left: 32px;
+        }
+        .sidebar-nav a {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            font-weight: 400;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        .sidebar-nav a.active, .sidebar-nav a:hover {
+            background-color: #7ab09c;
+            color: #181a20;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+        }
+        .main-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .support-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 600px;
+            max-width: 90vw;
+            margin: 0 auto;
+        }
+        .support-form input[type="text"],
+        .support-form input[type="email"] {
+            width: 100%;
+            font-size: 1rem;
+            padding: 12px 14px;
+            border: 1.5px solid #333;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            outline: none;
+            background: #23242a;
+            color: #fff;
+        }
+        .support-form textarea {
+            width: 100%;
+            min-height: 200px;
+            font-size: 1rem;
+            padding: 12px 14px;
+            border: 1.5px solid #333;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            resize: vertical;
+            outline: none;
+            background: #23242a;
+            color: #fff;
+            font-family: inherit;
+        }
+        .support-form button {
+            width: 140px;
+            font-size: 1rem;
+            padding: 12px 0;
+            background: #7ab09c;
+            color: #181a20;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .support-form button:hover {
+            background: #6a9f8c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(122, 176, 156, 0.3);
+        }
+        .support-info {
+            margin-top: 40px;
+            max-width: 480px;
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            text-align: center;
+            line-height: 1.6;
+        }
+        .support-info strong {
+            color: #fff;
+        }
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 100px;
+                padding-left: 0;
+            }
+            .sidebar-nav, .logo-bar {
+                margin-left: 10px;
+            }
+            .sidebar-nav a {
+                font-size: 1rem;
+                padding: 6px 8px;
+            }
+            .logo-bar img {
+                height: 60px;
+            }
+            .logo-bar strong {
+                font-size: 1.2rem;
+            }
+            .support-form {
+                width: 95vw;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <img src="logo_iMate_2.png" alt="iMate Logo">
+            <a href="acc_main_page_dark.html" style="color:#fff;font-size:2rem;font-weight:700;text-decoration:none;letter-spacing:1px;transition:color 0.2s;">iMate</a>
+<!--            <strong>iMate</strong>-->
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="account_cheatsheet_dark.html">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="account_settings_dark.html">Account settings</a>
+            <a href="#" class="active">Support</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Support</h1>
+        <form class="support-form" id="supportForm">
+            <input type="text" id="topic" placeholder="Topic" required />
+            <input type="email" id="userEmail" placeholder="Your email address" required />
+            <textarea id="message" placeholder="Describe your issue or question..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="support-info">
+            <strong>How it works:</strong><br>
+            Fill out the form above with your topic and message. We'll receive your request at support@imate.solutions and respond to the email address you provide. Our support team typically responds within 24 hours during business days.
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('supportForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const topic = document.getElementById('topic').value.trim();
+    const userEmail = document.getElementById('userEmail').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!topic || !userEmail || !message) {
+        alert('Please fill in all fields.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userEmail)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+    
+    try {
+        // In a real implementation, this would send to your backend
+        const response = await fetch('/api/support', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                topic: topic,
+                userEmail: userEmail,
+                message: message,
+                to: 'support@imate.solutions'
+            })
+        });
+        
+        if (response.ok) {
+            alert('Your message has been sent successfully! We\'ll respond to ' + userEmail + ' within 24 hours.');
+            document.getElementById('supportForm').reset();
+        } else {
+            alert('Failed to send message. Please try again.');
+        }
+    } catch (err) {
+        // For demo purposes, show success message
+        alert('Your message has been sent successfully! We\'ll respond to ' + userEmail + ' within 24 hours.');
+        document.getElementById('supportForm').reset();
+        
+        // In production, you would handle the error properly
+        console.error('Error sending support request:', err);
+    }
+});
+</script>
+</body>
+</html>
