@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account settings - iMate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #343539;
+            color: #fff;
+        }
+        .sidebar {
+            width: 320px;
+            background-color: #23242a;
+            border-right: none;
+            padding-top: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 32px;
+            margin-bottom: 40px;
+        }
+
+        .logo-bar img {
+            height: 100px;
+            margin-right: 12px;
+        }
+
+        .logo-bar strong {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .sidebar-nav {
+            width: 100%;
+            padding-left: 32px;
+        }
+
+        .sidebar-nav a {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            font-weight: 400;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: #7ab09c;
+            color: #181a20;
+        }
+
+        .sidebar-nav .balance-label {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 8px;
+            color: #b0b0b0;
+        }
+
+        .sidebar-nav .balance-box {
+            background: #23242a;
+            color: #fff;
+            font-size: 1.2rem;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            width: 180px;
+            border: 1px solid #333;
+        }
+        .sidebar-nav a.active, .sidebar-nav a:hover {
+            background-color: #7ab09c;
+            color: #181a20;
+        }
+
+        .settings-content {
+            margin-left: 400px;
+            margin-top: 60px;
+            max-width: 800px;
+            background: #343539
+        }
+        .settings-content h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: left;
+            color: #fff;
+        }
+        .settings-section {
+            margin-bottom: 40px;
+        }
+        .settings-section h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        .settings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .settings-table td {
+            padding: 10px 20px 10px 0;
+            vertical-align: top;
+            font-size: 1.1rem;
+        }
+        .settings-table td.label {
+            font-weight: 600;
+            color: #fff;
+        }
+        .settings-table td.value {
+            color: #b0b0b0;
+        }
+        .settings-table td.action {
+            color: #7ab09c;
+            font-size: 1rem;
+        }
+        .settings-table td.action a {
+            color: #7ab09c;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        .settings-table td.action a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .settings-content {
+                margin-left: 0;
+                margin-top: 20px;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <img src="logo_iMate_2.png" alt="iMate Logo">
+            <a href="acc_main_page_dark.html" style="color:#fff;font-size:2rem;font-weight:700;text-decoration:none;letter-spacing:1px;transition:color 0.2s;">iMate</a>
+<!--            <strong>iMate</strong>-->
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="account_cheatsheet_dark.html">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="#" class="active">Settings</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+    <div class="settings-content" style="margin-left: 180px;">
+        <h1 style="text-align:center; margin-left:0;">Account settings</h1>
+        <div class="settings-section" style="margin-left:0;">
+            <h2 style="margin-left:0;">Account details</h2>
+            <table class="settings-table">
+                <tr>
+                    <td class="label" style="padding-left:0;">Name</td>
+                    <td class="value">Liubov Sharaborina</td>
+                    <td class="action"><a href="#">Change name</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-left:0;">Phone number</td>
+                    <td class="value">79777****55</td>
+                    <td class="action"><a href="#">Change phone number</a></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-left:0;">Email</td>
+                    <td class="value">shara***ly@mail.ru</td>
+                    <td class="action"><a href="#">Change email address</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="settings-section" style="margin-left:0;">
+            <h2 style="margin-left:0;">Security</h2>
+            <table class="settings-table">
+                <tr>
+                    <td class="action"><a href="#">Change password</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-left:0;">Sign out</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

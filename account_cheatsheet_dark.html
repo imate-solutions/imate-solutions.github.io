@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add cheatsheet - iMate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #343539;
+            color: #fff;
+        }
+        .sidebar {
+            width: 320px;
+            background-color: #23242a;
+            border-right: none;
+            padding-top: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            margin-left: 32px;
+            margin-bottom: 40px;
+        }
+        .logo-bar img {
+            height: 100px;
+            margin-right: 12px;
+        }
+        .logo-bar strong {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+        .sidebar-nav {
+            width: 100%;
+            padding-left: 32px;
+        }
+        .sidebar-nav a {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            font-weight: 400;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+        .sidebar-nav a.active, .sidebar-nav a:hover {
+            background-color: #7ab09c;
+            color: #181a20;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 80px;
+        }
+        .main-content h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #fff;
+        }
+        .cheatsheet-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 900px;
+            max-width: 90vw;
+            margin: 0 auto;
+        }
+        .cheatsheet-form input[type="text"] {
+            width: 100%;
+            font-size: 1rem;
+            padding: 12px 14px;
+            border: 1.5px solid #333;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            outline: none;
+            background: #23242a;
+            color: #fff;
+        }
+        .cheatsheet-form textarea {
+            width: 100%;
+            min-height: 380px;
+            font-size: 1rem;
+            padding: 12px 14px;
+            border: 1.5px solid #333;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            resize: vertical;
+            outline: none;
+            background: #23242a;
+            color: #fff;
+        }
+        .cheatsheet-form button {
+            width: 140px;
+            font-size: 1rem;
+            padding: 10px 0;
+            background: #7ab09c;
+            color: #181a20;
+            border: none;
+            border-radius: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cheatsheet-form button:hover {
+            background: #6a9f8c;
+        }
+        @media (max-width: 900px) {
+            .sidebar {
+                width: 100px;
+                padding-left: 0;
+            }
+            .sidebar-nav, .logo-bar {
+                margin-left: 10px;
+            }
+            .sidebar-nav a {
+                font-size: 1rem;
+                padding: 6px 8px;
+            }
+            .logo-bar img {
+                height: 60px;
+            }
+            .logo-bar strong {
+                font-size: 1.2rem;
+            }
+            .cheatsheet-form {
+                width: 98vw;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <img src="logo_iMate_2.png" alt="iMate Logo">
+            <a href="acc_main_page_dark.html" style="color:#fff;font-size:2rem;font-weight:700;text-decoration:none;letter-spacing:1px;transition:color 0.2s;">iMate</a>
+<!--            <strong>iMate</strong>-->
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="#" class="active">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="account_settings_dark.html">Settings</a>
+            <a href="support.html">Support</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Add cheatsheet</h1>
+        <form class="cheatsheet-form" id="cheatsheetForm">
+            <input type="text" id="cheatsheetName" placeholder="Cheatsheet name" required />
+            <textarea id="cheatsheetText" placeholder="Type here" required></textarea>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+<script>
+document.getElementById('cheatsheetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('cheatsheetName').value.trim();
+    const text = document.getElementById('cheatsheetText').value.trim();
+    if (!name || !text) return;
+    try {
+        const response = await fetch('/api/cheatsheets', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, text })
+        });
+        if (response.ok) {
+            alert('Cheatsheet saved!');
+            document.getElementById('cheatsheetForm').reset();
+        } else {
+            alert('Failed to save cheatsheet.');
+        }
+    } catch (err) {
+        alert('Error: Could not save cheatsheet.');
+    }
+});
+</script>
+</body>
+</html>

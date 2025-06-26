@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up - iMate</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: #181a20;
+            min-height: 100vh;
+            color: #f3f3f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-bar img {
+            height: 80px;
+            margin-right: 12px;
+        }
+
+        .logo-bar strong {
+            font-size: 2.2rem;
+            color: #fff;
+        }
+
+        .center-box {
+            background: #23242a;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            min-width: 400px;
+            max-width: 90vw;
+        }
+
+        .center-box h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 16px;
+            background: #343539;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .social-btn:hover {
+            background: #7ab09c;
+            color: #181a20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(122, 176, 156, 0.3);
+        }
+
+        .social-btn img {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-btn:hover img {
+            filter: none;
+        }
+
+        @media (max-width: 768px) {
+            .center-box {
+                padding: 2rem;
+                min-width: 300px;
+            }
+
+            .logo-bar strong {
+                font-size: 1.8rem;
+            }
+
+            .logo-bar img {
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-bar">
+        <img src="logo_iMate_2.png" alt="iMate Logo">
+        <strong>iMate</strong>
+    </div>
+    <div class="center-box">
+        <h2>Sign up</h2>
+        <a class="social-btn" href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google">Continue with Google</a>
+        <a class="social-btn" href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook">Continue with Facebook</a>
+        <a class="social-btn" href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn">Continue with LinkedIn</a>
+        <a class="social-btn" href="#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">Continue with GitHub</a>
+    </div>
+</body>
+</html> 
