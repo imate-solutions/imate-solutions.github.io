@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account settings - iMate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="credits-dropdown">
+        <button class="get-credits-btn">Get Credits</button>
+        <div class="credits-popup">
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">100 credits</div>
+                    <div class="credits-price">$100 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">1000 credits</div>
+                    <div class="credits-price">$900 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+        </div>
+    </div>
+<!--    <button class="get-credits-btn">Get Credits</button>-->
+    <!-- <div class="plan">Pro Plan <span style="color:#b0b0b0;font-weight:400;">Active</span></div> -->
+    <div class="user-info">
+        <span style="color:#b0b0b0;font-size:1rem;">John Doe</span>
+        <div class="user-initials">JD</div>
+    </div>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <a href="acc_main_page_dark.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo_iMate_2.png" alt="iMate Logo">
+                <strong>iMate</strong>
+            </a>
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="account_cheatsheet_dark.html">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="#" class="active">Settings</a>
+            <a href="support.html">Support Center</a>
+        </div>
+    </div>
+    <div class="settings-content" style="flex-direction: row; align-items: flex-start;">
+        <h1 style="text-align:center; margin-left:0;">Account settings</h1>
+        <div class="settings-section" style="margin-left:0;">
+            <h2 style="margin-left:0;">Account details</h2>
+            <table class="settings-table">
+                <tr>
+                    <td class="label" style="padding-left:0;">Name</td>
+                    <td class="value">John Doe</td>
+                    <td class="action"><a href="#">Change name</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-left:0;">Phone number</td>
+                    <td class="value">+374 ****55</td>
+                    <td class="action"><a href="#">Change phone number</a></td>
+                </tr>
+                <tr>
+                    <td class="label" style="padding-left:0;">Email</td>
+                    <td class="value">johndoe@gmail.com</td>
+                    <td class="action"><a href="#">Change email address</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="settings-section" style="margin-left:0;">
+            <h2 style="margin-left:0;">Security</h2>
+            <table class="settings-table">
+                <tr>
+                    <td class="action"><a href="#">Change password</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="action"><a href="#">Sign out</a></td>
+<!--                    <td class="label" style="padding-left:0;">Sign out</td>-->
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

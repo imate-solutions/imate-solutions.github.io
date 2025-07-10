@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session 1 - iMate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="credits-dropdown">
+        <button class="get-credits-btn">Get Credits</button>
+        <div class="credits-popup">
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">100 credits</div>
+                    <div class="credits-price">$100 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">1000 credits</div>
+                    <div class="credits-price">$900 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+        </div>
+    </div>
+<!--    <button class="get-credits-btn">Get Credits</button>-->
+    <!-- <div class="plan">Pro Plan <span style="color:#b0b0b0;font-weight:400;">Active</span></div> -->
+    <div class="user-info">
+        <span style="color:#b0b0b0;font-size:1rem;">John Doe</span>
+        <div class="user-initials">JD</div>
+    </div>
+</div>
+<!-- Remove the old handle outside .cheatsheet-panel -->
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <a href="acc_main_page_dark.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo_iMate_2.png" alt="iMate Logo">
+                <strong>iMate</strong>
+            </a>
+<!--            <img src="logo_iMate_2.png" alt="iMate Logo">-->
+<!--            <strong>iMate</strong>-->
+        </div>
+        <div class="sidebar-nav">
+            <a href="#" class="active">Interview</a>
+            <a href="account_cheatsheet_dark.html">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="account_settings_dark.html">Settings</a>
+            <a href="support.html">Support Center</a>
+        </div>
+    </div>
+    <div class="main-content-cht">
+        <div class="chat-area">
+            <div class="side-icons">
+                <div class="side-icon"></div>
+            </div>
+            <h1>Interview session</h1>
+            <div id="chatBlocks">
+                <div class="chat-block" id="answer1">Answer 1</div>
+                <div class="chat-block question" id="question2">Question 2</div>
+                <div class="chat-block" id="answer2" style="height: 220px;">Answer 2</div>
+            </div>
+            <form class="input-block" id="questionForm" autocomplete="off">
+                <input type="text" id="userQuestion" placeholder="Type your question" required />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div class="cheatsheet-panel" id="cheatsheetPanel">
+            <div class="cheatsheet-handle" id="cheatsheetHandle"><span>☰</span></div>
+            <div class="cheatsheet-section">
+                <h2>Add your cheatsheet</h2>
+                <button class="cheatsheet-plus-btn">+</button>
+                <button class="overlay-mode-btn">Enable overlay mode</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    
+// ChatGPT API integration (placeholder)
+document.getElementById('questionForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const input = document.getElementById('userQuestion');
+    const question = input.value.trim();
+    if (!question) return;
+    // Show user question in chat
+    const chatBlocks = document.getElementById('chatBlocks');
+    const questionDiv = document.createElement('div');
+    questionDiv.className = 'chat-block question';
+    questionDiv.textContent = question;
+    chatBlocks.appendChild(questionDiv);
+    chatBlocks.scrollTop = chatBlocks.scrollHeight;
+    input.value = '';
+    // Placeholder: call ChatGPT API
+    const answerDiv = document.createElement('div');
+    answerDiv.className = 'chat-block';
+    answerDiv.textContent = '...';
+    chatBlocks.appendChild(answerDiv);
+    chatBlocks.scrollTop = chatBlocks.scrollHeight;
+    // Replace with your real API call
+    try {
+        // Example: const response = await fetch('YOUR_API_ENDPOINT', { method: 'POST', body: JSON.stringify({question}) });
+        // const data = await response.json();
+        // answerDiv.textContent = data.answer;
+        setTimeout(() => {
+            answerDiv.textContent = 'This is a mock ChatGPT response.';
+            chatBlocks.scrollTop = chatBlocks.scrollHeight;
+        }, 1200);
+    } catch (err) {
+        answerDiv.textContent = 'Error: Could not get response.';
+        chatBlocks.scrollTop = chatBlocks.scrollHeight;
+    }
+});
+
+// Cheatsheet (right sidebar) toggle
+const cheatsheetPanel = document.getElementById('cheatsheetPanel');
+const cheatsheetHandle = document.getElementById('cheatsheetHandle');
+let cheatsheetOpen = false;
+cheatsheetHandle.addEventListener('click', () => {
+    cheatsheetOpen = !cheatsheetOpen;
+    cheatsheetPanel.classList.toggle('open', cheatsheetOpen);
+});
+</script>
+</body>
+</html>

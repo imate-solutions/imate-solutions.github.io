@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iMate - Your Undetectable Assistant for Interviews</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: #181a20;
+            min-height: 100vh;
+            color: #f3f3f3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #23242a;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 80px;
+            margin-right: -15px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #f3f3f3;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #7bb09c;
+        }
+
+        .sign-in-btn {
+            background: #7bb09c;
+            color: #181a20;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sign-in-btn:hover {
+            background: #5ca07c;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: left;
+            color: #fff;
+            background: #23242a;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            background: #72b193;
+            color: black;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(50, 87, 137, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #5ca07c;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(50, 87, 137, 0.6);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: #23242a;
+            border-radius: 20px 20px 0 0;
+            margin-top: 2rem;
+            padding: 4rem 0;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 0rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #23242a 0%, #23242a 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Tutorial Section */
+        .tutorial {
+            background: #23242a;
+            padding: 4rem 0;
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .video-placeholder {
+            background: #23242a;
+            border-radius: 15px;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background: #181a20;
+            transform: scale(1.02);
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: #7bb09c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: #181a20;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pricing-card {
+            background: #23242a;
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #7bb09c;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(123, 176, 156, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: #7bb09c;
+            background: linear-gradient(135deg, #23242a 10%, #23242a 100%);
+            color: #fff;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .pricing-card .description {
+            margin-bottom: 0;
+            font-size: 1rem;
+            color: #b0b0b0;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: #23242a;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .faq-question {
+            background: #23242a;
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: #fff;
+        }
+
+        .faq-question:hover {
+            background: #181a20;
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            color: #b0b0b0;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: #181a20;
+            color: #fff;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-section a {
+            color: #b0b0b0;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #7bb09c;
+        }
+
+        .language-select {
+            background: #23242a;
+            color: #fff;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="logo_iMate_2.png" alt="iMate Logo">
+                    <strong>iMate</strong>
+                </div>
+<!--                <a href="#" class="logo">-->
+<!--                    <div class="logo-icon">-->
+<!--                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                            <circle cx="50" cy="50" r="40" stroke="white" stroke-width="8" fill="none"/>-->
+<!--                            <circle cx="50" cy="35" r="12" fill="white"/>-->
+<!--                            <rect x="45" y="60" width="10" height="20" fill="white" stroke="white" stroke-width="2"/>-->
+<!--                        </svg>-->
+<!--                    </div>-->
+<!--                    iMate-->
+<!--                </a>-->
+                <ul class="nav-links">
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#tutorial">Tutorial</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="sign_up_page_dark.html" class="sign-in-btn">Sign up / Sign in</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>iMate</h1>
+            <p class="subtitle">your AI-powered undetectable assistant for interviews</p>
+            <div class="cta-container">
+                <a href="sign_up_page_dark.html" class="cta-button">Get started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">What Our Product Does</h2>
+                <p class="description">
+                    iMate is an advanced AI-powered interview assistant that helps you excel in your job interviews by providing real-time, undetectable support and guidance throughout your interview process.
+                </p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="section">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Real-Time Assistance</h3>
+                        <p>Get instant, intelligent responses and suggestions during your interview without anyone knowing. Our AI analyzes questions in real-time and provides contextually relevant answers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Completely Undetectable</h3>
+                        <p>Our advanced technology ensures that your interview assistance remains completely invisible to interviewers. You select the task description, press the keyboard shortcut, and the AI-generated answer appears on a separate device or in overlay mode.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Industry-Specific Knowledge</h3>
+                        <p>Tailored responses based on your industry, role, and company research. Our AI understands the nuances of different fields and provides relevant, professional answers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutorial Section -->
+        <section id="tutorial" class="tutorial">
+            <div class="container">
+                <h2 class="section-title">Tutorial</h2>
+                <div class="video-container">
+                    <div class="video-placeholder" onclick="playVideo()">
+                        <div class="play-button">▶</div>
+                        <p>Watch our comprehensive tutorial to learn how to use iMate effectively</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="section">
+            <div class="container">
+                <h2 class="section-title">Pricing</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card featured">
+                        <h3>Free package</h3>
+                        <p class="description">Perfect for trying out iMate</p>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Pro package</h3>
+                        <p class="description">Coming soon</p>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Premium package</h3>
+                        <p class="description">Coming soon</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">How does iMate work?</div>
+                    <div class="faq-answer">Our extension is designed to help you pass interviews without ever needing to leave your current browser tab. During an interview, simply press a hotkey to send either a text query or a screenshot of the active tab. You’ll receive the answer via a Telegram bot on your mobile device or as a discreet overlay directly on the same tab — undetectable and seamless.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">How does iMate remain undetectable during interviews?</div>
+                    <div class="faq-answer">The extension operates entirely in the background, making it invisible to the website you’re interacting with. Websites have no way of detecting what requests are being sent or received. Moreover, we've addressed a common issue: many modern platforms override native browser APIs to block external tools. Our solution captures native function behavior before the website loads and uses those safe, unaltered versions throughout — ensuring consistent and undetectable performance.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">What types of interviews does iMate support?</div>
+                    <div class="faq-answer">1. <b>Coding Challenge</b><br>
+                        Submit your task using either a text query or screenshot — whichever is more convenient.<br>
+                        2. <b>Technical Interview with Live Coding</b><br>The interviewer may provide a link to a collaborative online code editor. If screen sharing is required, use your mobile device to view responses. If not, you can use overlay mode or Telegram — your choice.<br>
+                        3. <b>System Design Round</b><br>Typically involves a shared whiteboard. Based on whether you're asked to share your screen or not, choose the appropriate method: mobile view or in-tab overlay.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">Is my data secure and private?</div>
+                    <div class="faq-answer">Absolutely. We use enterprise-grade encryption and follow strict privacy protocols. Your interview data is never stored permanently and is completely deleted after each session to ensure maximum privacy and security.</div>
+                </div>
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">Does it work?</div>
+                    <div class="faq-answer">One of our iMate developers was recently invited to interview at Yandex — and made it through 4 rounds: <br>- 1 behavioral interview, <br>- 2 live coding sessions, <br>- and 1 system design round. <br>Each session included a few off-topic or irrelevant questions (especially the system design one) — but the iMate browser extension captured them in real time and delivered accurate, up-to-date responses that helped navigate the process confidently. <br>He passed all rounds — but chose not to accept the offer, because building iMate offers far more room for growth and impact.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>iMate</h4>
+                    <a href="founders.html">Founders</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Language</h4>
+                    <select class="language-select">
+                        <option>English</option>
+                        <option>Russian</option>
+
+                    </select>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a>support@imate.solutions</a>
+                    <a href="http://t.me/iMate_hiring_hack">Telegram link</a>
+                    <a href="#youtube">YouTube link</a>
+                    <a href="#reddit">Reddit link</a>
+                    <a href="https://www.linkedin.com/company/imate-hiring-solutions/?viewAsMember=true">LinkedIn link</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Terms & Policy</h4>
+                    <a href="Terms_and_Conditions.pdf" target="_blank">Terms & Conditions</a>
+                    <a href="Privacy_Policy.pdf" target="_blank">Privacy Policy</a>
+                    <a href="Refund_Policy.pdf" target="_blank">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            const isActive = element.classList.contains('active');
+
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+
+        function playVideo() {
+            alert('Video tutorial would play here. In a real implementation, this would open a video player or redirect to a video platform.');
+        }
+
+        // Remove custom anchor scroll JS for navigation links
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

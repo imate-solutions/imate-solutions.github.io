@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add cheatsheet - iMate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="credits-dropdown">
+        <button class="get-credits-btn">Get Credits</button>
+        <div class="credits-popup">
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">100 credits</div>
+                    <div class="credits-price">$100 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">1000 credits</div>
+                    <div class="credits-price">$900 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+        </div>
+    </div>
+<!--    <button class="get-credits-btn">Get Credits</button>-->
+    <!-- <div class="plan">Pro Plan <span style="color:#b0b0b0;font-weight:400;">Active</span></div> -->
+    <div class="user-info">
+        <span style="color:#b0b0b0;font-size:1rem;">John Doe</span>
+        <div class="user-initials">JD</div>
+    </div>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <a href="acc_main_page_dark.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo_iMate_2.png" alt="iMate Logo">
+                <strong>iMate</strong>
+            </a>
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="#" class="active">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="account_settings_dark.html">Settings</a>
+            <a href="support.html">Support Center</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Add cheatsheet</h1>
+        <form class="cheatsheet-form" id="cheatsheetForm">
+            <input type="text" id="cheatsheetName" placeholder="Cheatsheet name" required />
+            <textarea id="cheatsheetText" placeholder="Type here" required></textarea>
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</div>
+<script>
+document.getElementById('cheatsheetForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('cheatsheetName').value.trim();
+    const text = document.getElementById('cheatsheetText').value.trim();
+    if (!name || !text) return;
+    try {
+        const response = await fetch('/api/cheatsheets', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, text })
+        });
+        if (response.ok) {
+            alert('Cheatsheet saved!');
+            document.getElementById('cheatsheetForm').reset();
+        } else {
+            alert('Failed to save cheatsheet.');
+        }
+    } catch (err) {
+        alert('Error: Could not save cheatsheet.');
+    }
+});
+</script>
+</body>
+</html>

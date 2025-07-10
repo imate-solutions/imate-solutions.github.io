@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iMate support</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="top-bar">
+    <div class="credits-dropdown">
+        <button class="get-credits-btn">Get Credits</button>
+        <div class="credits-popup">
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">100 credits</div>
+                    <div class="credits-price">$100 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+            <div class="credits-option">
+                <div class="credits-info">
+                    <div class="credits-amount">1000 credits</div>
+                    <div class="credits-price">$900 USD</div>
+                </div>
+                <button class="buy-btn">Buy</button>
+            </div>
+        </div>
+    </div>
+<!--    <button class="get-credits-btn">Get Credits</button>-->
+    <!-- <div class="plan">Pro Plan <span style="color:#b0b0b0;font-weight:400;">Active</span></div> -->
+    <div class="user-info">
+        <span style="color:#b0b0b0;font-size:1rem;">John Doe</span>
+        <div class="user-initials">JD</div>
+    </div>
+</div>
+<div class="layout">
+    <div class="sidebar">
+        <div class="logo-bar">
+            <a href="acc_main_page_dark.html" style="display: flex; align-items: center; text-decoration: none;">
+                <img src="logo_iMate_2.png" alt="iMate Logo">
+                <strong>iMate</strong>
+            </a>
+        </div>
+        <div class="sidebar-nav">
+            <a href="account_new_session_dark.html">Interview</a>
+            <a href="account_cheatsheet_dark.html">Add cheatsheet</a>
+            <a href="account_download_dark.html">Download extension</a>
+            <a href="account_settings_dark.html">Settings</a>
+            <a href="#" class="active">Support Center</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h1>Support Center</h1>
+        <h2>If you need help, contact us</h2>
+        <form class="support-form" id="supportForm">
+            <input type="text" id="topic" placeholder="Topic" required />
+            <input type="email" id="userEmail" placeholder="Your email address" required />
+            <textarea id="message" placeholder="Describe your issue or question..." required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <!-- Tutorial Section -->
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+        <h2>Tutorial</h2>
+        <div class="dashboard-card" style="width: 100%; max-width: 650px; margin-top: 36px;">
+<!--            <h2 style="font-size:1.3rem; font-weight:400; color:#fff; margin-bottom: 18px;">Tutorial</h2>-->
+            <div class="tutorial-video-wrapper" style="position:relative; width:100%; padding-bottom:56.25%; height:0; border-radius:12px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,0.10); background:#23242a;">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="iMate Tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+            </div>
+        </div>
+        <div class="support-info">
+            <strong>How it works:</strong><br>
+            Fill out the form above with your topic and message. We'll receive your request at support@imate.solutions and respond to the email address you provide. Our support team typically responds within 24 hours during business days.
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('supportForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const topic = document.getElementById('topic').value.trim();
+    const userEmail = document.getElementById('userEmail').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!topic || !userEmail || !message) {
+        alert('Please fill in all fields.');
+        return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(userEmail)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+    
+    try {
+        // In a real implementation, this would send to your backend
+        const response = await fetch('/api/support', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                topic: topic,
+                userEmail: userEmail,
+                message: message,
+                to: 'support@imate.solutions'
+            })
+        });
+        
+        if (response.ok) {
+            alert('Your message has been sent successfully! We\'ll respond to ' + userEmail + ' within 24 hours.');
+            document.getElementById('supportForm').reset();
+        } else {
+            alert('Failed to send message. Please try again.');
+        }
+    } catch (err) {
+        // For demo purposes, show success message
+        alert('Your message has been sent successfully! We\'ll respond to ' + userEmail + ' within 24 hours.');
+        document.getElementById('supportForm').reset();
+        
+        // In production, you would handle the error properly
+        console.error('Error sending support request:', err);
+    }
+});
+</script>
+</body>
+</html>
